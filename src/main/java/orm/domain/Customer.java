@@ -1,8 +1,6 @@
 package orm.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Entity
 public class Customer {
@@ -16,10 +14,15 @@ public class Customer {
 
 	private String email;
 
-	@Transient // TODO Remove this annotation and replace with valid relation config annotations
+	//@Transient // TODO Remove this annotation and replace with valid relation config annotations
+	@OneToOne
+	@JoinColumn(name = "address_id")
 	private Address address;
 
-	@Transient // TODO Remove this annotation and replace with valid relation config annotations
+	//@Transient // TODO Remove this annotation and replace with valid relation config annotations
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "store_id")
 	private Store store;
 
 	@Override

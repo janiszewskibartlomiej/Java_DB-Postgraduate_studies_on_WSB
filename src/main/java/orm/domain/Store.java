@@ -1,8 +1,6 @@
 package orm.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Entity
 public class Store {
@@ -10,7 +8,9 @@ public class Store {
 	@Id
 	private Integer storeId;
 
-	@Transient // TODO Remove this annotation and replace with valid relation config annotations
+	//@Transient // TODO Remove this annotation and replace with valid relation config annotations
+	@OneToOne
+	@JoinColumn(name = "address_id")
 	private Address address;
 
 	@Override

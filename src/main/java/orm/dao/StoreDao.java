@@ -12,11 +12,16 @@ public class StoreDao extends Dao {
 	}
 
 	public Store findById(int id) {
-		throw new UnsupportedOperationException();
+		return em.find(Store.class, id);
 	}
 
 	public List<Store> findAll() {
-		throw new UnsupportedOperationException();
+		return em
+				.createQuery("SELECT s FROM Store s " +
+						"LEFT JOIN FETCH s.address a " +
+						"LEFT JOIN FETCH a.city",
+						Store.class) //featch mowi zeby wycignal kolumne address
+				.getResultList();
 	}
 
 }
